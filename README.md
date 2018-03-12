@@ -1,2 +1,2 @@
 # Wish-List
-A simple app allowing people to post their travel plans. Users have the ability to join and leave other people's travel plans as well as view information on the travel plans that have already been posted.  
+A web app that allows users to register and login to add items to their wish-list and view the wish-lists of other users. Users can click on the items in other people's wish lists to see detailed information on the item.
