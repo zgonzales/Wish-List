@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'wish_list/style.css' %}">
+    </head>
+  <body>
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %} 
+    <p class="nav"><a href="/dashboard">Home</a> | <a href="/logout">Logout</a></p>       
+    <h2>Create a New Wish List Item</h2>
+    <form action='/wish_item/add' method='post'>
+        {% csrf_token %}
+        Item/Product: <input type="text" name='item'>
+        <br>
+        <input type='hidden' name='id' value={{logged_in.id}}>
+        <input type='submit' value='add'>
+    </form>
+    <hr>
+  </body>
+</html>

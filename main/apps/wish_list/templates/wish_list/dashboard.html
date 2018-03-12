@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'wish_list/style.css' %}">
+    </head>
+    <body>
+        <h2>Hello, {{logged_in.first_name}}!</h2>
+        <a class="nav" href="/logout">logout</a>
+        <h3>Your Wish List:</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Added by</th>
+                    <th>Date Added</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in your_list %}
+                <tr>
+                    <td><a href="/wish_item/item/{{item.id}}">{{item.name}}</a></td>
+                    <td>{{item.added_by.first_name}} {{item.added_by.last_name}}</td>
+                    <td>{{item.created_at}}</td>
+                    <td><a href="/wish_item/remove/{{item.id}}">remove from my Wishlist</a></td>         
+                </tr>
+                {% endfor %}
+                {% for item in items_added %}
+                <tr>
+                    <td><a href="/wish_item/item/{{item.id}}">{{item.name}}</a></td>
+                    <td>{{item.added_by.first_name}} {{item.added_by.last_name}}</td>
+                    <td>{{item.created_at}}</td>
+                    <td><a href="/wish_item/delete/{{item.id}}">Delete</a></td>         
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <hr>
+        <h3>Other User's Wish Lists:</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Added by</th>
+                    <th>Date Added</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in other_items %}
+                <tr>
+                    <td><a href="/wish_item/item/{{item.id}}">{{item.name}}</a></td>
+                    <td>{{item.added_by.first_name}} {{item.added_by.last_name}}</td>
+                    <td>{{item.created_at}}</td>
+                    <td><a href="/wish_item/add/{{item.id}}">Add to my WishList</a></td>                
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h3><a href="/wish_items/new">Add Item</a></h3>
+    </body>
+</html>

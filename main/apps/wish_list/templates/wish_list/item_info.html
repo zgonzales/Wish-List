@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'travel_buddy2/style.css' %}">
+    </head>
+    <body>
+        <p class="nav"><a class="nav" href="/dashboard">Home</a> | <a href="/logout">Logout</a></p>       
+        <h2>{{item.name}}</h2>
+        <hr>
+        <h2>Users who added this product/item under their wish list:</h2>
+        {% for t in lists %}
+            <h4>{{t.first_name}} {{t.last_name}}</h4>                
+        {% endfor %}
+    </body>
+</html>
